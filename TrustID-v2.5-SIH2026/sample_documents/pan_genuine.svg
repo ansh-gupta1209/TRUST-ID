@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" height="410" viewBox="0 0 650 410">
+  <rect width="650" height="410" rx="16" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
+  <rect x="20" y="20" width="610" height="40" rx="6" fill="#1e40af"/>
+  <text x="325" y="37" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#ffffff" text-anchor="middle">INCOME TAX DEPARTMENT / GOVT. OF INDIA</text>
+  <text x="325" y="52" font-family="Arial, sans-serif" font-size="11" fill="#bfdbfe" text-anchor="middle">Permanent Account Number Card</text>
+  <rect x="40" y="80" width="120" height="150" rx="4" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+  <circle cx="100" cy="130" r="30" fill="#475569"/>
+  <text x="180" y="105" font-family="Arial, sans-serif" font-size="11" fill="#475569">Name / नाम</text>
+  <text x="180" y="125" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#0f172a">VIKRAM SHARMA</text>
+  <text x="180" y="150" font-family="Arial, sans-serif" font-size="11" fill="#475569">Father's Name</text>
+  <text x="180" y="170" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#0f172a">RAMESH SHARMA</text>
+  <text x="180" y="195" font-family="Arial, sans-serif" font-size="11" fill="#475569">Date of Birth</text>
+  <text x="180" y="215" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#0f172a">12/04/1995</text>
+  <rect x="30" y="280" width="590" height="60" rx="8" fill="#ffffff" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="325" y="322" font-family="Courier New, monospace" font-size="28" font-weight="900" fill="#1e3a8a" letter-spacing="6" text-anchor="middle">AAAPS1234K</text>
+</svg>

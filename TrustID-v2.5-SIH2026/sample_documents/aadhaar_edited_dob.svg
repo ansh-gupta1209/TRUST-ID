@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" height="410" viewBox="0 0 650 410">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdfbf7"/>
+      <stop offset="100%" stop-color="#f4ede2"/>
+    </linearGradient>
+    <linearGradient id="tricolor" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF9933"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#138808"/>
+    </linearGradient>
+  </defs>
+  <rect width="650" height="410" rx="16" fill="url(#bg2)" stroke="#d3c5b4" stroke-width="2"/>
+  <rect x="10" y="10" width="630" height="10" rx="4" fill="url(#tricolor)"/>
+  <text x="325" y="42" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#9c27b0" text-anchor="middle">भारत सरकार / GOVERNMENT OF INDIA</text>
+  <text x="325" y="60" font-family="Arial, sans-serif" font-size="11" fill="#d32f2f" text-anchor="middle">भारतीय विशिष्ट पहचान प्राधिकरण / UIDAI</text>
+  <line x1="25" y1="70" x2="625" y2="70" stroke="#e0d5c1" stroke-width="1.5"/>
+  <rect x="40" y="90" width="130" height="165" rx="6" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5"/>
+  <circle cx="105" cy="145" r="35" fill="#64748b"/>
+  <path d="M 65 230 C 65 185, 145 185, 145 230 Z" fill="#475569"/>
+  <text x="200" y="115" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1e293b">ROHIT PATEL</text>
+  <rect x="196" y="128" width="220" height="30" fill="#ffffff" stroke="#f87171" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <text x="204" y="148" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#000000">DOB: 01/01/2000</text>
+  <text x="425" y="148" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#dc2626">[EDITED]</text>
+  <text x="200" y="180" font-family="Arial, sans-serif" font-size="14" fill="#334155">Gender: MALE / पुरुष</text>
+  <text x="200" y="210" font-family="Arial, sans-serif" font-size="12" fill="#64748b">Address: Navrangpura, Ahmedabad, Gujarat - 380009</text>
+  <rect x="30" y="295" width="590" height="65" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="325" y="338" font-family="Courier New, monospace" font-size="32" font-weight="900" fill="#0f172a" letter-spacing="6" text-anchor="middle">3456 7890 1234</text>
+  <rect x="10" y="390" width="630" height="10" rx="4" fill="url(#tricolor)"/>
+</svg>

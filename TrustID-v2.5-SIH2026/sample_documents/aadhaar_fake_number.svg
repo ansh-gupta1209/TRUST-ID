@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" height="410" viewBox="0 0 650 410">
+  <rect width="650" height="410" rx="16" fill="#fdfbf7" stroke="#d3c5b4" stroke-width="2"/>
+  <text x="325" y="42" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#9c27b0" text-anchor="middle">भारत सरकार / GOVERNMENT OF INDIA</text>
+  <line x1="25" y1="70" x2="625" y2="70" stroke="#e0d5c1" stroke-width="1.5"/>
+  <rect x="40" y="90" width="130" height="165" rx="6" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5"/>
+  <circle cx="105" cy="145" r="35" fill="#64748b"/>
+  <text x="200" y="115" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1e293b">VIKRAM SHARMA</text>
+  <text x="200" y="145" font-family="Arial, sans-serif" font-size="14" fill="#334155">DOB: 12/04/1995</text>
+  <rect x="30" y="295" width="590" height="65" rx="10" fill="#fff1f2" stroke="#f43f5e" stroke-width="2"/>
+  <text x="325" y="338" font-family="Courier New, monospace" font-size="32" font-weight="900" fill="#be123c" letter-spacing="6" text-anchor="middle">9876 5432 1099</text>
+  <text x="325" y="354" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#e11d48" text-anchor="middle">FAILED VERHOEFF CHECKSUM</text>
+</svg>

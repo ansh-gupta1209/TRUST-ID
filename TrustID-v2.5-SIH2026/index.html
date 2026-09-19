@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TrustID - Multi-Evidence Identity Document Verification Suite</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Executive Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-section">
+        <h1>
+          <span>TrustID</span>
+          <span class="badge">TEAM CONQUEROR</span>
+          <span class="badge" style="background: rgba(2, 132, 199, 0.4); border-color: #38bdf8;">PS ID: SIH26188</span>
+        </h1>
+        <p>Explainable Multi-Evidence Document Authenticity Engine & Fraud Intelligence Workspace</p>
+      </div>
+      <div class="header-actions">
+        <!-- Privacy Auto-Masking Toggle -->
+        <button id="btnPrivacyToggle" class="privacy-pill active" title="Toggle PII Masking">
+          ?? Auto-Masking: ON
+        </button>
+
+        <!-- Role Selector -->
+        <select id="selRole" class="field-input" style="width: 140px; padding: 5px 8px; font-size: 11px; font-weight: bold; background: rgba(255,255,255,0.15); color: #fff; border-color: rgba(255,255,255,0.3);">
+          <option value="Operator" style="color: #0f172a;">Operator</option>
+          <option value="Senior Reviewer" style="color: #0f172a;">Senior Reviewer</option>
+          <option value="Compliance Auditor" style="color: #0f172a;">Compliance Auditor</option>
+        </select>
+
+        <button id="btnBenchmark" class="btn-pill" title="Run Benchmark Evaluation Suite">
+          <span>??</span> Benchmark (10 TCs)
+        </button>
+        <button id="btnDigiLocker" class="btn-pill" title="DigiLocker / API Setu Sandbox Connector">
+          <span>??</span> DigiLocker Sandbox
+        </button>
+        <button id="btnExportFeedback" class="btn-pill" title="Export Reviewer Feedback Dataset">
+          <span>??</span> Export Feedback
+        </button>
+        <button id="btnGenCert" class="btn-pill primary" title="Generate Official Authenticity Audit Certificate">
+          <span>??</span> Audit Certificate
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- DPDP Act 2023 Consent Notice -->
+  <div class="consent-banner">
+    <div>
+      <strong>DPDP Act 2023 Privacy Notice:</strong> Local-first sandbox architecture. Image forensics, Error Level Analysis (ELA), ICAO MRZ checksums, and OCR parsing execute locally on-device. Zero biometric data leaves this session.
+    </div>
+    <div style="font-weight: 700; color: #1e3a8a;">v2.5 Enterprise Suite</div>
+  </div>
+
+  <!-- Workspace View Navigation Tabs -->
+  <nav class="view-nav-tabs">
+    <button class="view-nav-btn active" data-view="single">
+      <span>??</span> Single Document Inspection
+    </button>
+    <button class="view-nav-btn" data-view="multidoc">
+      <span>???</span> Multi-Doc Applicant Dossier
+    </button>
+    <button class="view-nav-btn" data-view="graph">
+      <span>???</span> Fraud Intelligence Graph
+    </button>
+    <button class="view-nav-btn" data-view="tamperlab">
+      <span>??</span> Synthetic Tamper Lab (Demo)
+    </button>
+  </nav>
+
+  <!-- VIEW 1: SINGLE DOCUMENT VERIFICATION WORKSPACE -->
+  <main id="viewSingle" class="workspace-container">
+    <aside class="case-sidebar">
+      <div class="sidebar-title-bar">
+        <h2>Case Verification Queue</h2>
+        <span style="font-size: 11px; color: var(--text-muted);">10 Vectors</span>
+      </div>
+      <div class="queue-tabs">
+        <button class="queue-tab active" data-filter="all">All</button>
+        <button class="queue-tab" data-filter="review">Review</button>
+        <button class="queue-tab" data-filter="escalate">Escalate</button>
+        <button class="queue-tab" data-filter="accept">Accept</button>
+      </div>
+      <div id="caseList" class="case-list"></div>
+      <div id="uploadZone" class="upload-zone">
+        <div style="font-size: 24px; margin-bottom: 2px;">??</div>
+        <strong>Upload New Document</strong>
+        <p>Drop Aadhaar, PAN, or Passport scan</p>
+        <input type="file" id="fileInput" accept="image/*,.svg" style="display: none;">
+      </div>
+    </aside>
+
+    <section class="main-workspace">
+      <div class="status-bar-card">
+        <div class="status-metric" id="metricScore" style="border-left-color: var(--primary-blue);">
+          <small>Authenticity Score</small>
+          <strong id="valScore">-- / 100</strong>
+        </div>
+        <div class="status-metric" id="metricRisk">
+          <small>Risk Categorization</small>
+          <strong id="valRisk">--</strong>
+        </div>
+        <div class="status-metric" id="metricAction">
+          <small>Recommended Action</small>
+          <strong id="valAction">--</strong>
+        </div>
+        <div class="status-metric" id="metricCoverage" style="border-left-color: var(--accent-blue);">
+          <small>Evidence Coverage</small>
+          <strong id="valCoverage">--%</strong>
+        </div>
+      </div>
+
+      <div class="split-view">
+        <div class="evidence-panel">
+          <div class="panel-header">
+            <h3>Visual Evidence Inspector</h3>
+            <div class="mode-pills">
+              <button class="mode-pill active" data-mode="original">Original</button>
+              <button class="mode-pill" data-mode="ela">ELA Heatmap</button>
+              <button class="mode-pill" data-mode="noise">Noise Texture</button>
+              <button class="mode-pill" data-mode="boxes">Tamper Overlay</button>
+            </div>
+          </div>
+          <div class="inspector-stage" id="inspectorStage">
+            <div class="stage-canvas-wrap">
+              <img id="stageImg" class="stage-img" src="" alt="Document Preview" style="display: none;">
+              <canvas id="stageCanvas" class="stage-canvas"></canvas>
+              <canvas id="overlayCanvas" class="overlay-canvas"></canvas>
+            </div>
+          </div>
+          <div id="inspectorLegend" class="inspector-legend" style="display: none;"></div>
+        </div>
+
+        <div class="details-panel">
+          <div class="panel-header">
+            <h3>Extracted Fields & Verification</h3>
+            <span style="font-size: 11px; color: var(--text-muted);">Live Editable</span>
+          </div>
+          <div class="field-group">
+            <div class="field-row">
+              <div class="field-label-wrap"><span>Document Type</span></div>
+              <select id="fldType" class="field-input">
+                <option value="AADHAAR">Aadhaar Card (UIDAI)</option>
+                <option value="PAN">PAN Card (Income Tax Dept)</option>
+                <option value="PASSPORT">Indian Passport (Republic of India)</option>
+                <option value="UNKNOWN">Other / Unknown</option>
+              </select>
+            </div>
+            <div class="field-row">
+              <div class="field-label-wrap"><span>Cardholder Name</span></div>
+              <input type="text" id="fldName" class="field-input" placeholder="Full Name">
+            </div>
+            <div class="field-row">
+              <div class="field-label-wrap">
+                <span>Identity Number</span>
+                <span id="statusId" class="field-status">Checking...</span>
+              </div>
+              <input type="text" id="fldId" class="field-input" placeholder="12-digit Aadhaar / 10-char PAN / 8-char Passport">
+            </div>
+            <div class="field-row">
+              <div class="field-label-wrap">
+                <span>Date of Birth</span>
+                <span id="statusDob" class="field-status">Checking...</span>
+              </div>
+              <input type="text" id="fldDob" class="field-input" placeholder="DD/MM/YYYY">
+            </div>
+            <div class="field-row">
+              <div class="field-label-wrap"><span>Gender</span></div>
+              <input type="text" id="fldGender" class="field-input" placeholder="Gender">
+            </div>
+          </div>
+
+          <div class="feedback-box">
+            <h4>
+              <span>Human Reviewer Feedback Loop</span>
+              <span style="font-size: 10px; font-weight: normal; color: var(--text-muted);">Model Fine-Tuning</span>
+            </h4>
+            <div id="feedbackContainer"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="split-view" style="margin-top: 16px;">
+        <div class="evidence-panel">
+          <div class="panel-header">
+            <h3>Explainable Decision Reasoning</h3>
+            <span style="font-size: 11px; color: var(--text-muted);">Traceable Root Cause</span>
+          </div>
+          <ul id="reasonsList" class="reasons-list"></ul>
+        </div>
+        <div class="evidence-panel">
+          <div class="panel-header">
+            <h3>Multi-Layer Evidence Contributions</h3>
+            <span style="font-size: 11px; color: var(--text-muted);">Calibrated 100-Point Fusion</span>
+          </div>
+          <table class="evidence-table">
+            <thead>
+              <tr><th>Evidence Source</th><th>Score Earned</th><th>Penalty</th></tr>
+            </thead>
+            <tbody id="evidenceTbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- VIEW 2: MULTI-DOCUMENT APPLICANT DOSSIER -->
+  <div id="viewMultiDoc" class="multidoc-container" style="display: none;">
+    <div class="cross-matrix-card">
+      <h3 style="color: var(--primary-navy); margin-bottom: 4px;">Multi-Document Identity Consistency Dossier</h3>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">
+        Evaluates cross-document identity coherence across Aadhaar, PAN, and Passport for bank KYC, recruitment, and university admissions.
+      </p>
+
+      <div class="matrix-metric-bar">
+        <div class="status-metric" style="border-left-color: #0f766e; background: #f8fafc; padding: 10px;">
+          <small>DOSSIER SCORE</small><strong id="multiScore" style="color: #0f766e; font-size: 20px;">100 / 100</strong>
+        </div>
+        <div class="status-metric" style="border-left-color: #0284c7; background: #f8fafc; padding: 10px;">
+          <small>OVERALL RISK</small><strong id="multiRisk" style="color: #0284c7; font-size: 20px;">LOW RISK</strong>
+        </div>
+        <div class="status-metric" style="border-left-color: #102f4e; background: #f8fafc; padding: 10px;">
+          <small>NAME SIMILARITY</small><strong id="multiNameSim" style="color: #102f4e; font-size: 20px;">100% Match</strong>
+        </div>
+        <div class="status-metric" style="border-left-color: #b45309; background: #f8fafc; padding: 10px;">
+          <small>DOB ALIGNMENT</small><strong id="multiDobMatch" style="color: #b45309; font-size: 20px;">? Aligned</strong>
+        </div>
+      </div>
+
+      <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 10px 14px; font-size: 13px; color: #1e40af; margin-bottom: 16px;">
+        <strong>Dossier Cross-Match Summary:</strong> <span id="multiSummary">Comparing all documents...</span>
+      </div>
+
+      <div class="dossier-grid">
+        <div class="doc-card-slot">
+          <h4><span>?? Document 1: Aadhaar</span><span class="case-tag accept">VERIFIED</span></h4>
+          <div class="slot-preview-box">
+            <img src="sample_documents/aadhaar_genuine.svg" alt="Aadhaar">
+          </div>
+          <div style="font-size: 12px; color: #334155;">
+            <strong>Name:</strong> ANSH GUPTA<br>
+            <strong>ID:</strong> 5432 1098 7652<br>
+            <strong>DOB:</strong> 15/08/2002
+          </div>
+        </div>
+
+        <div class="doc-card-slot">
+          <h4><span>?? Document 2: PAN Card</span><span class="case-tag accept">VERIFIED</span></h4>
+          <div class="slot-preview-box">
+            <img src="sample_documents/pan_genuine.svg" alt="PAN Card">
+          </div>
+          <div style="font-size: 12px; color: #334155;">
+            <strong>Name:</strong> VIKRAM SHARMA<br>
+            <strong>PAN:</strong> AAAPS1234K<br>
+            <strong>DOB:</strong> 12/04/1995
+          </div>
+        </div>
+
+        <div class="doc-card-slot">
+          <h4><span>?? Document 3: Indian Passport</span><span class="case-tag accept">VERIFIED</span></h4>
+          <div class="slot-preview-box">
+            <img src="sample_documents/passport_genuine.svg" alt="Passport">
+          </div>
+          <div style="font-size: 12px; color: #334155;">
+            <strong>Name:</strong> ANSH GUPTA<br>
+            <strong>Passport:</strong> Z2345678<br>
+            <strong>DOB:</strong> 15/08/2002
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW 3: FRAUD INTELLIGENCE GRAPH -->
+  <div id="viewGraph" class="graph-container" style="display: none;">
+    <div class="graph-canvas-card">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="color: var(--primary-navy); font-size: 15px;">Syndicate & Cross-Case Reuse Network</h3>
+        <span style="font-size: 12px; color: var(--text-muted);">Interactive Investigation Canvas</span>
+      </div>
+      <canvas id="fraudGraphCanvas"></canvas>
+    </div>
+
+    <aside class="syndicate-sidebar">
+      <h3 style="font-size: 15px; color: var(--primary-navy);">Detected Fraud Syndicates</h3>
+      <div class="syndicate-alert-item">
+        <strong>? Biometric Photo Reuse Ring</strong>
+        <p>Portrait #882A reused across 2 distinct identities: TC-01 (Ansh Gupta) and TC-03 (Imposter Case).</p>
+      </div>
+      <div class="syndicate-alert-item" style="border-left-color: #f59e0b; background: #fffbeb;">
+        <strong style="color: #92400e;">? Shared Synthetic Address</strong>
+        <p>Multiple submissions clustered from identical non-existent address block.</p>
+      </div>
+      <div class="syndicate-alert-item" style="border-left-color: #6366f1; background: #f5f3ff;">
+        <strong style="color: #4338ca;">? Template Signature Match</strong>
+        <p>Cases TC-02 and TC-03 share identical font rasterization artifacts.</p>
+      </div>
+    </aside>
+  </div>
+
+  <!-- VIEW 4: SYNTHETIC TAMPER GENERATION LAB -->
+  <div id="viewTamperLab" class="tamper-lab-container" style="display: none;">
+    <aside class="tamper-control-card">
+      <h3 style="color: var(--primary-navy); font-size: 15px;">Tamper Injection Triggers</h3>
+      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
+        Inject controlled forgeries onto this genuine card, then analyze in TrustID to verify detection in real time.
+      </p>
+
+      <button id="btnAttackDob" class="attack-btn">
+        <strong>?? Inject Spliced DOB Patch</strong>
+        <span>Replaces DOB with 01/01/2000 (font & noise anomaly)</span>
+      </button>
+
+      <button id="btnAttackPhoto" class="attack-btn">
+        <strong>??? Swap Portrait Photo</strong>
+        <span>Pastes foreign avatar with boundary edge discontinuity</span>
+      </button>
+
+      <button id="btnAttackChecksum" class="attack-btn">
+        <strong>?? Corrupt Checksum Digit</strong>
+        <span>Mutates ID to 9876 5432 1099 (breaks Verhoeff D5)</span>
+      </button>
+
+      <button id="btnAttackCompression" class="attack-btn">
+        <strong>?? WhatsApp 8x8 Compression</strong>
+        <span>Overlays uniform block quantization noise</span>
+      </button>
+
+      <button id="btnResetTamper" class="btn-pill" style="color: #0f172a; border-color: #cbd5e1; justify-content: center; margin-top: 10px;">
+        ?? Reset to Clean Card
+      </button>
+
+      <button id="btnAnalyzeTampered" class="btn-pill primary" style="justify-content: center; padding: 12px; font-size: 14px;">
+        ?? Send to TrustID Verification Engine
+      </button>
+    </aside>
+
+    <main class="tamper-stage-card">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="color: var(--primary-navy); font-size: 15px;">Interactive Tamper Workbench</h3>
+        <span id="tamperLog" style="font-size: 12px; color: #0284c7; font-weight: 600;">Base Card Ready</span>
+      </div>
+      <div id="tamperCanvasWrap" class="tamper-canvas-wrap"></div>
+    </main>
+  </div>
+
+  <!-- MODAL: OFFICIAL AUDIT CERTIFICATE -->
+  <div id="certModal" class="modal-backdrop" hidden>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Verification Audit Certificate</h3>
+        <button id="btnCloseCert" class="btn-close">&times;</button>
+      </div>
+      <div id="certModalBody" class="modal-body"></div>
+      <div class="modal-footer">
+        <button id="btnPrintCert" class="btn-pill primary">??? Print / Save as PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: DIGILOCKER SANDBOX -->
+  <div id="digiModal" class="modal-backdrop" hidden>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>DigiLocker / API Setu Enterprise Gateway (Sandbox)</h3>
+        <button id="btnCloseDigi" class="btn-close">&times;</button>
+      </div>
+      <div id="digiModalBody" class="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- MODAL: BENCHMARK SUITE -->
+  <div id="benchModal" class="modal-backdrop" hidden>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>TrustID Empirical Benchmark & Evaluation Matrix</h3>
+        <button id="btnCloseBench" class="btn-close">&times;</button>
+      </div>
+      <div id="benchModalBody" class="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Core JavaScript Modules -->
+  <script src="js/rules.js"></script>
+  <script src="js/forensics.js"></script>
+  <script src="js/templates.js"></script>
+  <script src="js/qr_module.js"></script>
+  <script src="js/passport_mrz.js"></script>
+  <script src="js/cross_doc.js"></script>
+  <script src="js/fraud_graph.js"></script>
+  <script src="js/tamper_lab.js"></script>
+  <script src="js/ocr_engine.js"></script>
+  <script src="js/fusion.js"></script>
+  <script src="js/digilocker_sandbox.js"></script>
+  <script src="js/benchmark.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

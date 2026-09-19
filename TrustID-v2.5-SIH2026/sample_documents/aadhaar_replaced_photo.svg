@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" height="410" viewBox="0 0 650 410">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdfbf7"/>
+      <stop offset="100%" stop-color="#f4ede2"/>
+    </linearGradient>
+    <linearGradient id="tricolor" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF9933"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#138808"/>
+    </linearGradient>
+  </defs>
+  <rect width="650" height="410" rx="16" fill="url(#bg3)" stroke="#d3c5b4" stroke-width="2"/>
+  <rect x="10" y="10" width="630" height="10" rx="4" fill="url(#tricolor)"/>
+  <text x="325" y="42" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#9c27b0" text-anchor="middle">भारत सरकार / GOVERNMENT OF INDIA</text>
+  <line x1="25" y1="70" x2="625" y2="70" stroke="#e0d5c1" stroke-width="1.5"/>
+  <rect x="35" y="85" width="140" height="175" fill="#38bdf8" stroke="#ef4444" stroke-width="3"/>
+  <circle cx="105" cy="150" r="38" fill="#f59e0b"/>
+  <rect x="85" y="185" width="40" height="75" fill="#1e3a8a"/>
+  <text x="105" y="255" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#b91c1c" text-anchor="middle">SPLICED PHOTO</text>
+  <text x="200" y="115" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1e293b">ANSH GUPTA</text>
+  <text x="200" y="145" font-family="Arial, sans-serif" font-size="14" fill="#334155">DOB: 15/08/2002</text>
+  <text x="200" y="175" font-family="Arial, sans-serif" font-size="14" fill="#334155">Gender: MALE</text>
+  <rect x="30" y="295" width="590" height="65" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="325" y="338" font-family="Courier New, monospace" font-size="32" font-weight="900" fill="#0f172a" letter-spacing="6" text-anchor="middle">5432 1098 7652</text>
+  <rect x="10" y="390" width="630" height="10" rx="4" fill="url(#tricolor)"/>
+</svg>

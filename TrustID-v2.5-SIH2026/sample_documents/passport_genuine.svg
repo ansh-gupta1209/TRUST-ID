@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" height="460" viewBox="0 0 650 460">
+  <rect width="650" height="460" rx="12" fill="#faf8f5" stroke="#94a3b8" stroke-width="2"/>
+  <!-- Passport Header -->
+  <rect x="15" y="15" width="620" height="45" rx="6" fill="#1e3a8a"/>
+  <text x="325" y="34" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">REPUBLIC OF INDIA / ???? ???????</text>
+  <text x="325" y="50" font-family="Arial, sans-serif" font-size="11" fill="#93c5fd" text-anchor="middle">PASSPORT / ????????</text>
+
+  <!-- Photo Box -->
+  <rect x="35" y="80" width="130" height="170" rx="4" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5"/>
+  <circle cx="100" cy="135" r="32" fill="#475569"/>
+  <path d="M 65 220 C 65 175, 135 175, 135 220 Z" fill="#334155"/>
+  <text x="100" y="240" font-family="Arial, sans-serif" font-size="9" fill="#64748b" text-anchor="middle">REPUBLIC OF INDIA</text>
+
+  <!-- Personal Data Column 1 -->
+  <text x="190" y="95" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Type/??????</text>
+  <text x="190" y="110" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#0f172a">P</text>
+
+  <text x="260" y="95" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Country Code/??? ???</text>
+  <text x="260" y="110" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#0f172a">IND</text>
+
+  <text x="400" y="95" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Passport No./???????? ??.</text>
+  <text x="400" y="112" font-family="Courier New, monospace" font-size="16" font-weight="900" fill="#1e3a8a">Z2345678</text>
+
+  <text x="190" y="135" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Surname/?????</text>
+  <text x="190" y="152" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#0f172a">GUPTA</text>
+
+  <text x="190" y="175" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Given Name(s)/???? ??? ???</text>
+  <text x="190" y="192" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#0f172a">ANSH</text>
+
+  <text x="190" y="215" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Nationality/???????????</text>
+  <text x="190" y="230" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#0f172a">INDIAN</text>
+
+  <text x="320" y="215" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Sex/????</text>
+  <text x="320" y="230" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#0f172a">M</text>
+
+  <text x="400" y="215" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Date of Birth/???? ????</text>
+  <text x="400" y="230" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#0f172a">15/08/2002</text>
+
+  <text x="190" y="255" font-family="Arial, sans-serif" font-size="10" fill="#64748b">Date of Expiry/??????? ?? ????</text>
+  <text x="190" y="270" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#0f172a">09/01/2032</text>
+
+  <!-- Machine Readable Zone (MRZ 2-Line Strip) -->
+  <rect x="15" y="370" width="620" height="75" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="30" y="402" font-family="Courier New, monospace" font-size="17" font-weight="bold" fill="#0f172a" letter-spacing="2.5">P<INDGUPTA<<ANSH<<<<<<<<<<<<<<<<<<<<<<<<<<<<</text>
+  <text x="30" y="430" font-family="Courier New, monospace" font-size="17" font-weight="bold" fill="#0f172a" letter-spacing="2.5">Z2345678<6IND0208150M3201093<<<<<<<<<<<<<<08</text>
+</svg>
